@@ -24,9 +24,9 @@ export interface BlogPost {
   seo_description: string
 }
 
-export async function getBlogPosts(brand = 'video'): Promise<BlogPost[]> {
+export async function getBlogPosts(brand = 'video', language = 'en'): Promise<BlogPost[]> {
   const res = await fetch(
-    `${API}/blog_posts?status=eq.published&brand=eq.${brand}&order=published_at.desc&select=id,title,slug,excerpt,author,featured_image,tags,published_at,brand`,
+    `${API}/blog_posts?status=eq.published&brand=eq.${brand}&language=eq.${language}&order=published_at.desc&select=id,title,slug,excerpt,author,featured_image,tags,published_at,brand,language`,
     { headers, next: { revalidate: 300 } }
   )
   if (!res.ok) return []
