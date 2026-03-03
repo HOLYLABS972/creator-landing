@@ -24,7 +24,7 @@ export interface BlogPost {
   seo_description: string
 }
 
-export async function getBlogPosts(brand = 'creator-ai'): Promise<BlogPost[]> {
+export async function getBlogPosts(brand = 'video'): Promise<BlogPost[]> {
   const res = await fetch(
     `${API}/blog_posts?status=eq.published&brand=eq.${brand}&order=published_at.desc&select=id,title,slug,excerpt,author,featured_image,tags,published_at,brand`,
     { headers, next: { revalidate: 300 } }
